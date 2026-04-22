@@ -33,9 +33,15 @@
         ,yuangong.yuangong_id_number as yuangongIdNumber
         ,yuangong.yuangong_photo as yuangongPhoto
         ,yuangong.yuangong_email as yuangongEmail
+        ,xiaofeizhe.xiaofeizhe_name as xiaofeizheName
+        ,xiaofeizhe.xiaofeizhe_phone as xiaofeizhePhone
+        ,xiaofeizhe.xiaofeizhe_id_number as xiaofeizheIdNumber
+        ,xiaofeizhe.xiaofeizhe_photo as xiaofeizhePhoto
+        ,xiaofeizhe.xiaofeizhe_email as xiaofeizheEmail
 
         FROM goods_shouyin  a
         left JOIN yuangong yuangong ON a.yuangong_id = yuangong.id
+        left JOIN xiaofeizhe xiaofeizhe ON a.xiaofeizhe_id = xiaofeizhe.id
 
         <where>
             <if test="params.ids != null">
@@ -83,6 +89,18 @@
             </if>
             <if test=" params.yuangongEmail != '' and params.yuangongEmail != null and params.yuangongEmail != 'null' ">
                 and yuangong.yuangong_email like CONCAT('%',#{params.yuangongEmail},'%')
+            </if>
+            <if test=" params.xiaofeizheName != '' and params.xiaofeizheName != null and params.xiaofeizheName != 'null' ">
+                and xiaofeizhe.xiaofeizhe_name like CONCAT('%',#{params.xiaofeizheName},'%')
+            </if>
+            <if test=" params.xiaofeizhePhone != '' and params.xiaofeizhePhone != null and params.xiaofeizhePhone != 'null' ">
+                and xiaofeizhe.xiaofeizhe_phone like CONCAT('%',#{params.xiaofeizhePhone},'%')
+            </if>
+            <if test=" params.xiaofeizheIdNumber != '' and params.xiaofeizheIdNumber != null and params.xiaofeizheIdNumber != 'null' ">
+                and xiaofeizhe.xiaofeizhe_id_number like CONCAT('%',#{params.xiaofeizheIdNumber},'%')
+            </if>
+            <if test=" params.xiaofeizheEmail != '' and params.xiaofeizheEmail != null and params.xiaofeizheEmail != 'null' ">
+                and xiaofeizhe.xiaofeizhe_email like CONCAT('%',#{params.xiaofeizheEmail},'%')
             </if>
         </where>
 

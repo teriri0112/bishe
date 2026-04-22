@@ -1,120 +1,93 @@
-package com.entity;
+package com.entity.vo;
 
-import com.baomidou.mybatisplus.annotations.TableId;
+import com.entity.XiaofeizheEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.lang.reflect.InvocationTargetException;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.commons.beanutils.BeanUtils;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
 
 /**
  * 消费者
- *
- * @author 
- * @email
+ * 手机端接口返回实体辅助类
+ * （主要作用去除一些不必要的字段）
  */
 @TableName("xiaofeizhe")
-public class XiaofeizheEntity<T> implements Serializable {
+public class XiaofeizheVO implements Serializable {
     private static final long serialVersionUID = 1L;
-
-
-	public XiaofeizheEntity() {
-
-	}
-
-	public XiaofeizheEntity(T t) {
-		try {
-			BeanUtils.copyProperties(this, t);
-		} catch (IllegalAccessException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 
     /**
      * 主键
      */
-    @TableId(type = IdType.AUTO)
-    @TableField(value = "id")
 
+    @TableField(value = "id")
     private Integer id;
 
 
     /**
      * 账户
      */
-    @TableField(value = "username")
 
+    @TableField(value = "username")
     private String username;
 
 
     /**
      * 密码
      */
-    @TableField(value = "password")
 
+    @TableField(value = "password")
     private String password;
 
 
     /**
      * 消费者姓名
      */
-    @TableField(value = "xiaofeizhe_name")
 
+    @TableField(value = "xiaofeizhe_name")
     private String xiaofeizheName;
 
 
     /**
      * 消费者手机号
      */
-    @TableField(value = "xiaofeizhe_phone")
 
+    @TableField(value = "xiaofeizhe_phone")
     private String xiaofeizhePhone;
 
 
     /**
      * 消费者身份证号
      */
-    @TableField(value = "xiaofeizhe_id_number")
 
+    @TableField(value = "xiaofeizhe_id_number")
     private String xiaofeizheIdNumber;
 
 
     /**
      * 消费者头像
      */
-    @TableField(value = "xiaofeizhe_photo")
 
+    @TableField(value = "xiaofeizhe_photo")
     private String xiaofeizhePhoto;
 
 
     /**
      * 性别
      */
-    @TableField(value = "sex_types")
 
+    @TableField(value = "sex_types")
     private Integer sexTypes;
 
 
     /**
      * 电子邮箱
      */
-    @TableField(value = "xiaofeizhe_email")
 
+    @TableField(value = "xiaofeizhe_email")
     private String xiaofeizheEmail;
 
 
@@ -123,8 +96,8 @@ public class XiaofeizheEntity<T> implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-    @TableField(value = "create_time",fill = FieldFill.INSERT)
 
+    @TableField(value = "create_time")
     private Date createTime;
 
 
@@ -279,19 +252,4 @@ public class XiaofeizheEntity<T> implements Serializable {
         this.createTime = createTime;
     }
 
-    @Override
-    public String toString() {
-        return "Xiaofeizhe{" +
-            "id=" + id +
-            ", username=" + username +
-            ", password=" + password +
-            ", xiaofeizheName=" + xiaofeizheName +
-            ", xiaofeizhePhone=" + xiaofeizhePhone +
-            ", xiaofeizheIdNumber=" + xiaofeizheIdNumber +
-            ", xiaofeizhePhoto=" + xiaofeizhePhoto +
-            ", sexTypes=" + sexTypes +
-            ", xiaofeizheEmail=" + xiaofeizheEmail +
-            ", createTime=" + createTime +
-        "}";
-    }
 }

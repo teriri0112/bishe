@@ -38,6 +38,11 @@ public class GoodsShouyinModel implements Serializable {
      */
     private Integer yuangongId;
 
+    /**
+     * 消费者
+     */
+    private Integer xiaofeizheId;
+
 
     /**
      * 消费者
