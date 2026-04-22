@@ -126,6 +126,9 @@
             <if test="params.yuangongId != null  and params.yuangongId != ''">
                 and goodsShouyin.yuangong_id = #{params.yuangongId}
             </if>
+            <if test="params.xiaofeizheId != null  and params.xiaofeizheId != ''">
+                and goodsShouyin.xiaofeizhe_id = #{params.xiaofeizheId}
+            </if>
             <if test="params.goodsShouyinTruePriceStart != null ">
                 <![CDATA[  and goodsShouyin.goods_shouyin_true_price >= #{params.goodsShouyinTruePriceStart}   ]]>
             </if>

@@ -44,6 +44,14 @@ public class GoodsShouyinVO implements Serializable {
 
 
     /**
+     * 消费者
+     */
+    @TableField(value = "xiaofeizhe_id")
+
+    private Integer xiaofeizheId;
+
+
+    /**
      * 实付金额
      */
 
@@ -131,6 +139,21 @@ public class GoodsShouyinVO implements Serializable {
 
     public void setYuangongId(Integer yuangongId) {
         this.yuangongId = yuangongId;
+    }
+    /**
+	 * 设置：消费者
+	 */
+    public Integer getXiaofeizheId() {
+        return xiaofeizheId;
+    }
+
+
+    /**
+	 * 获取：消费者
+	 */
+
+    public void setXiaofeizheId(Integer xiaofeizheId) {
+        this.xiaofeizheId = xiaofeizheId;
     }
     /**
 	 * 设置：实付金额

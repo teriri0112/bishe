@@ -16,6 +16,7 @@
         a.id as id
         ,a.goods_shouyin_uuid_number as goodsShouyinUuidNumber
         ,a.yuangong_id as yuangongId
+        ,a.xiaofeizhe_id as xiaofeizheId
         ,a.goods_shouyin_true_price as goodsShouyinTruePrice
         ,a.goods_shouyin_types as goodsShouyinTypes
         ,a.goods_shouyin_content as goodsShouyinContent
@@ -48,6 +49,9 @@
             </if>
             <if test="params.yuangongId != null and params.yuangongId != ''">
                 and a.yuangong_id = #{params.yuangongId}
+            </if>
+            <if test="params.xiaofeizheId != null and params.xiaofeizheId != ''">
+                and a.xiaofeizhe_id = #{params.xiaofeizheId}
             </if>
             <if test="params.goodsShouyinTruePriceStart != null ">
                 <![CDATA[  and a.goods_shouyin_true_price >= #{params.goodsShouyinTruePriceStart}   ]]>

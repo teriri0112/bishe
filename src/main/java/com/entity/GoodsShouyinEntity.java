@@ -71,6 +71,14 @@ public class GoodsShouyinEntity<T> implements Serializable {
 
 
     /**
+     * 消费者
+     */
+    @TableField(value = "xiaofeizhe_id")
+
+    private Integer xiaofeizheId;
+
+
+    /**
      * 实付金额
      */
     @TableField(value = "goods_shouyin_true_price")
@@ -160,6 +168,21 @@ public class GoodsShouyinEntity<T> implements Serializable {
         this.yuangongId = yuangongId;
     }
     /**
+	 * 设置：消费者
+	 */
+    public Integer getXiaofeizheId() {
+        return xiaofeizheId;
+    }
+
+
+    /**
+	 * 获取：消费者
+	 */
+
+    public void setXiaofeizheId(Integer xiaofeizheId) {
+        this.xiaofeizheId = xiaofeizheId;
+    }
+    /**
 	 * 设置：实付金额
 	 */
     public Double getGoodsShouyinTruePrice() {
@@ -241,6 +264,7 @@ public class GoodsShouyinEntity<T> implements Serializable {
             "id=" + id +
             ", goodsShouyinUuidNumber=" + goodsShouyinUuidNumber +
             ", yuangongId=" + yuangongId +
+            ", xiaofeizheId=" + xiaofeizheId +
             ", goodsShouyinTruePrice=" + goodsShouyinTruePrice +
             ", goodsShouyinTypes=" + goodsShouyinTypes +
             ", goodsShouyinContent=" + goodsShouyinContent +

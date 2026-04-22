@@ -86,6 +86,8 @@ public class GoodsShouyinController {
             return R.error(511,"权限为空");
         else if("员工".equals(role))
             params.put("yuangongId",request.getSession().getAttribute("userId"));
+        else if("消费者".equals(role))
+            params.put("xiaofeizheId",request.getSession().getAttribute("userId"));
         if(params.get("orderBy")==null || params.get("orderBy")==""){
             params.put("orderBy","id");
         }
@@ -202,6 +204,8 @@ public class GoodsShouyinController {
         String role = String.valueOf(request.getSession().getAttribute("role"));
         if(StringUtil.isEmpty(role))
             return R.error(511,"权限为空");
+        if(!"员工".equals(role) && !"消费者".equals(role))
+            return R.error(511,"当前角色无权限调用该接口");
 
         String goodsShouyinTypes = String.valueOf(params.get("goodsShouyinTypes"));//收银类型
 
@@ -233,6 +237,8 @@ public class GoodsShouyinController {
             goodsShouyinEntity.setGoodsShouyinUuidNumber(String.valueOf(new Date().getTime()));
             if("员工".equals(role))
                 goodsShouyinEntity.setYuangongId(Integer.valueOf(String.valueOf(request.getSession().getAttribute("userId"))));
+            else if("消费者".equals(role))
+                goodsShouyinEntity.setXiaofeizheId(Integer.valueOf(String.valueOf(request.getSession().getAttribute("userId"))));
             goodsShouyinEntity.setGoodsShouyinTruePrice(goodsShouyinTruePrice);
             goodsShouyinEntity.setGoodsShouyinTypes(Integer.valueOf(goodsShouyinTypes));
             goodsShouyinEntity.setGoodsShouyinContent("");
