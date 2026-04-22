@@ -49,14 +49,18 @@ public class GoodsShouyinVO implements Serializable {
     @TableField(value = "xiaofeizhe_id")
     private Integer xiaofeizheId;
 
+/*
 
-    /**
+    */
+/**
      * 消费者
-     */
+     *//*
+
     @TableField(value = "xiaofeizhe_id")
 
     private Integer xiaofeizheId;
 
+*/
 
     /**
      * 实付金额

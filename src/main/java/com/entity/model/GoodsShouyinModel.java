@@ -43,12 +43,16 @@ public class GoodsShouyinModel implements Serializable {
      */
     private Integer xiaofeizheId;
 
+/*
 
-    /**
+    */
+/**
      * 消费者
-     */
+     *//*
+
     private Integer xiaofeizheId;
 
+*/
 
     /**
      * 实付金额

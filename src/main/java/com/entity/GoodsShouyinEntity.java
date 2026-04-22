@@ -77,12 +77,16 @@ public class GoodsShouyinEntity<T> implements Serializable {
     private Integer xiaofeizheId;
 
 
-    /**
+/*
+    */
+/**
      * 消费者
-     */
+     *//*
+
     @TableField(value = "xiaofeizhe_id")
 
     private Integer xiaofeizheId;
+*/
 
 
     /**

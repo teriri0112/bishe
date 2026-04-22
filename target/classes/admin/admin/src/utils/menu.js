@@ -232,6 +232,47 @@ const menu = {
         "roleName":"员工",
         "tableName":"yuangong"
     }
+	,
+	{
+        "backMenu":[
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "查看",
+                            "购买",
+                            "支付"
+                        ],
+                        "menu":"商品浏览购买",
+                        "menuJump":"列表",
+                        "tableName":"xiaofeigouwu"
+                    }
+                ],
+                "menu":"购物中心"
+            },
+            {
+                "child":[
+                    {
+                        "buttons":[
+                            "查看",
+                            "记录查询"
+                        ],
+                        "menu":"消费记录",
+                        "menuJump":"列表",
+                        "tableName":"xiaofeijilu"
+                    }
+                ],
+                "menu":"消费记录查询"
+            }
+        ],
+        "frontMenu":[],
+        "hasBackLogin":"是",
+        "hasBackRegister":"是",
+        "hasFrontLogin":"否",
+        "hasFrontRegister":"否",
+        "roleName":"消费者",
+        "tableName":"xiaofeizhe"
+    }
 ]
     }
 }
