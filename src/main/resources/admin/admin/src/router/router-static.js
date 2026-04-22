@@ -21,6 +21,7 @@ import center from '@/views/center'
         import goodsShouyin from '@/views/modules/goodsShouyin/list'
         import goodsShouyinList from '@/views/modules/goodsShouyinList/list'
         import yuangong from '@/views/modules/yuangong/list'
+        import xiaofeizhe from '@/views/modules/xiaofeizhe/list'
         import dictionaryGongyingshang from '@/views/modules/dictionaryGongyingshang/list'
         import dictionaryGongyingshangSuozaidiqu from '@/views/modules/dictionaryGongyingshangSuozaidiqu/list'
         import dictionaryGongyingshangXinyongdengji from '@/views/modules/dictionaryGongyingshangXinyongdengji/list'
@@ -144,6 +145,11 @@ const routes = [{
         path: '/yuangong',
         name: '员工',
         component: yuangong
+      }
+    ,{
+        path: '/xiaofeizhe',
+        name: '消费者',
+        component: xiaofeizhe
       }
 
     ,{

@@ -161,6 +161,22 @@ const menu = {
                 ],
                 "menu":"员工管理"
             }
+            ,{
+                "child":[
+                    {
+                        "buttons":[
+                            "查看",
+                            "新增",
+                            "修改",
+                            "删除"
+                        ],
+                        "menu":"消费者管理",
+                        "menuJump":"列表",
+                        "tableName":"xiaofeizhe"
+                    }
+                ],
+                "menu":"消费者管理"
+            }
         ],
         "frontMenu":[],
         "hasBackLogin":"是",
