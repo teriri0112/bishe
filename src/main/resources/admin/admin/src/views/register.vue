@@ -25,6 +25,25 @@
                         <el-form-item label="电子邮箱" class="input" v-if="tableName=='yuangong'">
                             <el-input v-model="ruleForm.yuangongEmail" autocomplete="off" placeholder="电子邮箱"  />
                         </el-form-item>
+                        <el-form-item label="消费者姓名" class="input" v-if="tableName=='xiaofeizhe'">
+                            <el-input v-model="ruleForm.xiaofeizheName" autocomplete="off" placeholder="消费者姓名"  />
+                        </el-form-item>
+                        <el-form-item label="消费者手机号" class="input" v-if="tableName=='xiaofeizhe'">
+                            <el-input v-model="ruleForm.xiaofeizhePhone" autocomplete="off" placeholder="消费者手机号"  />
+                        </el-form-item>
+                        <el-form-item label="电子邮箱" class="input" v-if="tableName=='xiaofeizhe'">
+                            <el-input v-model="ruleForm.xiaofeizheEmail" autocomplete="off" placeholder="电子邮箱"  />
+                        </el-form-item>
+                        <el-form-item label="性别" class="input" v-if="tableName=='xiaofeizhe'">
+                            <el-select v-model="ruleForm.sexTypes" placeholder="请选择性别" style="width: 100%">
+                                <el-option
+                                        v-for="item in sexTypesOptions"
+                                        :key="item.codeIndex"
+                                        :label="item.indexName"
+                                        :value="item.codeIndex">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
                         <div style="display: flex;flex-wrap: wrap;width: 100%;justify-content: center;">
                             <el-button class="btn" type="primary" @click="login()">注册</el-button>
                             <el-button class="btn close" type="primary" @click="close()">取消</el-button>
@@ -48,6 +67,16 @@
         mounted(){
             let table = this.$storage.get("loginTable");
             this.tableName = table;
+            this.$http({
+                url: `dictionary/page?page=1&limit=100&sort=&order=&dicCode=sex_types`,
+                method: "get"
+            }).then(({ data }) => {
+                if (data && data.code === 0) {
+                    this.sexTypesOptions = data.data.list;
+                } else {
+                    this.$message.error(data.msg);
+                }
+            });
         },
         methods: {
             // 获取uuid
@@ -84,8 +113,28 @@
                                 this.$message.error('员工身份证号不能为空');
                                 return
                             }
-                            if('yuangong' == this.tableName && this.ruleForm.yuangongEmail&&(!this.$validate.isEmail(this.ruleForm.yuangongEmail))){
+                             if('yuangong' == this.tableName && this.ruleForm.yuangongEmail&&(!this.$validate.isEmail(this.ruleForm.yuangongEmail))){
                                 this.$message.error("邮箱应输入邮件格式");
+                                return
+                            }
+                            if((!this.ruleForm.xiaofeizheName)&& 'xiaofeizhe'==this.tableName){
+                                this.$message.error('消费者姓名不能为空');
+                                return
+                            }
+                            if((!this.ruleForm.xiaofeizhePhone)&& 'xiaofeizhe'==this.tableName){
+                                this.$message.error('消费者手机号不能为空');
+                                return
+                            }
+                            if('xiaofeizhe' == this.tableName && this.ruleForm.xiaofeizhePhone&&(!this.$validate.isMobile(this.ruleForm.xiaofeizhePhone))){
+                                this.$message.error('手机应输入手机格式');
+                                return
+                            }
+                            if('xiaofeizhe' == this.tableName && this.ruleForm.xiaofeizheEmail&&(!this.$validate.isEmail(this.ruleForm.xiaofeizheEmail))){
+                                this.$message.error("邮箱应输入邮件格式");
+                                return
+                            }
+                            if((!this.ruleForm.sexTypes)&& 'xiaofeizhe'==this.tableName){
+                                this.$message.error('性别不能为空');
                                 return
                             }
                 this.$http({

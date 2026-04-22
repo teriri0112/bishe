@@ -42,6 +42,21 @@
                                   <el-input v-model="ruleForm.yuangongEmail"  placeholder='电子邮箱' clearable></el-input>
                               </el-form-item>
                           </el-col>
+                          <el-col :span="12">
+                              <el-form-item v-if="flag=='xiaofeizhe'"  label='消费者姓名' prop="xiaofeizheName">
+                                  <el-input v-model="ruleForm.xiaofeizheName"  placeholder='消费者姓名' clearable></el-input>
+                              </el-form-item>
+                          </el-col>
+                          <el-col :span="12">
+                              <el-form-item v-if="flag=='xiaofeizhe'"  label='消费者手机号' prop="xiaofeizhePhone">
+                                  <el-input v-model="ruleForm.xiaofeizhePhone"  placeholder='消费者手机号' clearable></el-input>
+                              </el-form-item>
+                          </el-col>
+                          <el-col :span="12">
+                              <el-form-item v-if="flag=='xiaofeizhe'"  label='电子邮箱' prop="xiaofeizheEmail">
+                                  <el-input v-model="ruleForm.xiaofeizheEmail"  placeholder='电子邮箱' clearable></el-input>
+                              </el-form-item>
+                          </el-col>
 
          <el-form-item v-if="flag=='users'" label="用户名" prop="username">
              <el-input v-model="ruleForm.username"
@@ -152,10 +167,26 @@ export default {
                              return
                          }
 
-                             if( 'yuangong' ==this.flag && this.ruleForm.yuangongEmail&&(!isEmail(this.ruleForm.yuangongEmail))){
+                         if( 'yuangong' ==this.flag && this.ruleForm.yuangongEmail&&(!isEmail(this.ruleForm.yuangongEmail))){
                                  this.$message.error(`邮箱应输入邮箱格式`);
                                  return
                              }
+                         if((!this.ruleForm.xiaofeizheName)&& 'xiaofeizhe'==this.flag){
+                             this.$message.error('消费者姓名不能为空');
+                             return
+                         }
+                         if((!this.ruleForm.xiaofeizhePhone)&& 'xiaofeizhe'==this.flag){
+                             this.$message.error('消费者手机号不能为空');
+                             return
+                         }
+                         if( 'xiaofeizhe' ==this.flag && this.ruleForm.xiaofeizhePhone&&(!isMobile(this.ruleForm.xiaofeizhePhone))){
+                             this.$message.error(`手机应输入手机格式`);
+                             return
+                         }
+                         if( 'xiaofeizhe' ==this.flag && this.ruleForm.xiaofeizheEmail&&(!isEmail(this.ruleForm.xiaofeizheEmail))){
+                             this.$message.error(`邮箱应输入邮箱格式`);
+                             return
+                         }
         if((!this.ruleForm.sexTypes)&& this.flag !='users'){
             this.$message.error('性别不能为空');
             return

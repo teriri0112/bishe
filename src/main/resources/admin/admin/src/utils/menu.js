@@ -232,6 +232,17 @@ const menu = {
         "roleName":"员工",
         "tableName":"yuangong"
     }
+	,
+	{
+        "backMenu":[],
+        "frontMenu":[],
+        "hasBackLogin":"是",
+        "hasBackRegister":"是",
+        "hasFrontLogin":"否",
+        "hasFrontRegister":"否",
+        "roleName":"消费者",
+        "tableName":"xiaofeizhe"
+    }
 ]
     }
 }
