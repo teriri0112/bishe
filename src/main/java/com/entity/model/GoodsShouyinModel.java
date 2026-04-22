@@ -38,6 +38,11 @@ public class GoodsShouyinModel implements Serializable {
      */
     private Integer yuangongId;
 
+    /**
+     * 消费者
+     */
+    private Integer xiaofeizheId;
+
 
     /**
      * 实付金额
@@ -114,6 +119,20 @@ public class GoodsShouyinModel implements Serializable {
 	 */
     public void setYuangongId(Integer yuangongId) {
         this.yuangongId = yuangongId;
+    }
+    /**
+	 * 获取：消费者
+	 */
+    public Integer getXiaofeizheId() {
+        return xiaofeizheId;
+    }
+
+
+    /**
+	 * 设置：消费者
+	 */
+    public void setXiaofeizheId(Integer xiaofeizheId) {
+        this.xiaofeizheId = xiaofeizheId;
     }
     /**
 	 * 获取：实付金额

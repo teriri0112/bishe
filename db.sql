@@ -110,16 +110,17 @@ CREATE TABLE `goods_churu_inout` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='采购';
 
-/*Data for the table `goods_churu_inout` */
-
-insert  into `goods_churu_inout`(`id`,`gongyingshang_id`,`goods_churu_inout_uuid_number`,`goods_churu_inout_name`,`goods_churu_inout_types`,`goods_churu_inout_content`,`insert_time`,`create_time`) values (1,2,'1640763342383','采购1',2,'','2021-12-29 15:35:42','2021-12-29 15:35:42'),(2,3,'1640826803450','采购2',2,'','2021-12-30 09:13:23','2021-12-30 09:13:23');
-
-/*Table structure for table `goods_churu_inout_list` */
-
-DROP TABLE IF EXISTS `goods_churu_inout_list`;
-
-CREATE TABLE `goods_churu_inout_list` (
+CREATE TABLE `goods_shouyin` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `goods_shouyin_uuid_number` varchar(200) DEFAULT NULL COMMENT '收银流水号 Search111 ',
+  `yuangong_id` int(11) DEFAULT NULL COMMENT '员工',
+  `xiaofeizhe_id` int(11) DEFAULT NULL COMMENT '消费者',
+  `goods_shouyin_true_price` decimal(10,2) DEFAULT NULL COMMENT '实付金额',
+  `goods_shouyin_types` int(11) DEFAULT NULL COMMENT '收银类型 Search111 ',
+  `goods_shouyin_content` text COMMENT '备注',
+  `insert_time` timestamp NULL DEFAULT NULL COMMENT '购买时间',
+  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+insert  into `goods_shouyin`(`id`,`goods_shouyin_uuid_number`,`yuangong_id`,`xiaofeizhe_id`,`goods_shouyin_true_price`,`goods_shouyin_types`,`goods_shouyin_content`,`insert_time`,`create_time`) values (2,'1640763917825',NULL,NULL,'110.00',2,'','2021-12-29 15:45:18','2021-12-29 15:45:18'),(3,'1640765169163',1,NULL,'115.00',2,'','2021-12-29 16:06:09','2021-12-29 16:06:09'),(4,'1640765194550',1,NULL,'225.00',1,'','2021-12-29 16:06:35','2021-12-29 16:06:35'),(5,'1640765217609',2,NULL,'60.00',2,'','2021-12-29 16:06:58','2021-12-29 16:06:58'),(6,'1640765236867',2,NULL,'155.00',2,'','2021-12-29 16:07:17','2021-12-29 16:07:17'),(7,'1640765257336',2,NULL,'60.00',1,'','2021-12-29 16:07:37','2021-12-29 16:07:37'),(8,'1640765169163',1,NULL,'115.00',2,'','2021-11-29 16:06:09','2021-11-29 16:06:09'),(9,'1640765194550',1,NULL,'225.00',1,'','2021-11-29 16:06:35','2021-11-29 16:06:35'),(10,'1640765217609',2,NULL,'60.00',2,'','2021-11-29 16:06:58','2021-11-29 16:06:58'),(11,'1640765236867',2,NULL,'155.00',2,'','2021-11-29 16:07:17','2021-11-29 16:07:17'),(12,'1640765257336',2,NULL,'60.00',1,'','2021-11-29 16:07:37','2021-11-29 16:07:37'),(13,'1640826890363',NULL,NULL,'800.00',2,'','2021-12-30 09:14:50','2021-12-30 09:14:50'),(14,'1640826907799',NULL,NULL,'1260.00',1,'','2021-12-30 09:15:08','2021-12-30 09:15:08'),(15,'1640827208329',1,NULL,'800.00',2,'','2021-12-30 09:20:08','2021-12-30 09:20:08'),(16,'1640827217891',1,NULL,'420.00',1,'','2021-12-30 09:20:18','2021-12-30 09:20:18');
   `goods_churu_inout_id` int(11) DEFAULT NULL COMMENT '采购',
   `goods_id` int(11) DEFAULT NULL COMMENT '商品',
   `goods_churu_inout_list_number` int(11) DEFAULT NULL COMMENT '操作数量',
@@ -186,12 +187,37 @@ CREATE TABLE `token` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='token表';
 
-/*Data for the table `token` */
+CREATE TABLE `yuangong` (
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='员工';
 
-insert  into `token`(`id`,`userid`,`username`,`tablename`,`role`,`token`,`addtime`,`expiratedtime`) values (1,6,'admin','users','管理员','7luw4j4mpqh7dve7u1sct4hvzw1o5ugt','2021-12-29 14:43:36','2021-12-30 10:21:22'),(2,1,'a1','yuangong','员工','am8bk12as3n5xyx9vbyfnlluokf84qy8','2021-12-29 16:05:36','2021-12-30 10:17:11'),(3,2,'a2','yuangong','员工','mkuaz7favum9c5p2203n9gedpwy02l0f','2021-12-29 16:06:46','2021-12-29 17:06:47');
+/*Data for the table `yuangong` */
 
-/*Table structure for table `users` */
+insert  into `yuangong`(`id`,`username`,`password`,`yuangong_name`,`yuangong_phone`,`yuangong_id_number`,`yuangong_photo`,`sex_types`,`yuangong_email`,`create_time`) values (1,'a1','123456','张1','17703786901','410224199610232001','http://localhost:8080/bianlidian/upload/1640764108037.webp',1,'1@qq.com','2021-12-29 15:48:40'),(2,'a2','123456','张2','17703786902','410224199610232002','http://localhost:8080/bianlidian/upload/1640764146653.webp',2,'2@qq.com','2021-12-29 15:49:16'),(3,'a3','123456','张3','17703786903','410224199610232003','http://localhost:8080/bianlidian/upload/1640827000464.jpg',2,'33@qq.com','2021-12-30 09:17:03');
 
+/*Table structure for table `xiaofeizhe` */
+
+DROP TABLE IF EXISTS `xiaofeizhe`;
+
+CREATE TABLE `xiaofeizhe` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `username` varchar(200) DEFAULT NULL COMMENT '账户',
+  `password` varchar(200) DEFAULT NULL COMMENT '密码',
+  `xiaofeizhe_name` varchar(200) DEFAULT NULL COMMENT '消费者姓名 Search111 ',
+  `xiaofeizhe_phone` varchar(200) DEFAULT NULL COMMENT '消费者手机号 Search111 ',
+  `xiaofeizhe_id_number` varchar(200) DEFAULT NULL COMMENT '消费者身份证号 Search111 ',
+  `xiaofeizhe_photo` varchar(200) DEFAULT NULL COMMENT '消费者头像',
+  `sex_types` int(11) DEFAULT NULL COMMENT '性别',
+  `xiaofeizhe_email` varchar(200) DEFAULT NULL COMMENT '电子邮箱',
+  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_xiaofeizhe_username` (`username`),
+  UNIQUE KEY `uk_xiaofeizhe_phone` (`xiaofeizhe_phone`),
+  UNIQUE KEY `uk_xiaofeizhe_id_number` (`xiaofeizhe_id_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='消费者';
+
+/*Data for the table `xiaofeizhe` */
+
+insert  into `xiaofeizhe`(`id`,`username`,`password`,`xiaofeizhe_name`,`xiaofeizhe_phone`,`xiaofeizhe_id_number`,`xiaofeizhe_photo`,`sex_types`,`xiaofeizhe_email`,`create_time`) values (1,'x1','123456','李1','17703786001','410224199810232001','http://localhost:8080/bianlidian/upload/1640764108037.webp',1,'x1@qq.com','2021-12-29 15:48:40'),(2,'x2','123456','李2','17703786002','410224199810232002','http://localhost:8080/bianlidian/upload/1640764146653.webp',2,'x2@qq.com','2021-12-29 15:49:16'),(3,'x3','123456','李3','17703786003','410224199810232003','http://localhost:8080/bianlidian/upload/1640827000464.jpg',2,'x3@qq.com','2021-12-30 09:17:03');
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
