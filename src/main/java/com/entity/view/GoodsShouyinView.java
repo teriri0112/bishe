@@ -46,6 +46,27 @@ public class GoodsShouyinView extends GoodsShouyinEntity implements Serializable
 			* 电子邮箱
 			*/
 			private String yuangongEmail;
+		//级联表 xiaofeizhe
+			/**
+			* 消费者姓名
+			*/
+			private String xiaofeizheName;
+			/**
+			* 消费者手机号
+			*/
+			private String xiaofeizhePhone;
+			/**
+			* 消费者身份证号
+			*/
+			private String xiaofeizheIdNumber;
+			/**
+			* 消费者头像
+			*/
+			private String xiaofeizhePhoto;
+			/**
+			* 电子邮箱
+			*/
+			private String xiaofeizheEmail;
 
 	public GoodsShouyinView() {
 
@@ -154,5 +175,67 @@ public class GoodsShouyinView extends GoodsShouyinEntity implements Serializable
 						this.yuangongEmail = yuangongEmail;
 					}
 
+
+				//级联表的get和set xiaofeizhe
+					/**
+					* 获取： 消费者姓名
+					*/
+					public String getXiaofeizheName() {
+						return xiaofeizheName;
+					}
+					/**
+					* 设置： 消费者姓名
+					*/
+					public void setXiaofeizheName(String xiaofeizheName) {
+						this.xiaofeizheName = xiaofeizheName;
+					}
+					/**
+					* 获取： 消费者手机号
+					*/
+					public String getXiaofeizhePhone() {
+						return xiaofeizhePhone;
+					}
+					/**
+					* 设置： 消费者手机号
+					*/
+					public void setXiaofeizhePhone(String xiaofeizhePhone) {
+						this.xiaofeizhePhone = xiaofeizhePhone;
+					}
+					/**
+					* 获取： 消费者身份证号
+					*/
+					public String getXiaofeizheIdNumber() {
+						return xiaofeizheIdNumber;
+					}
+					/**
+					* 设置： 消费者身份证号
+					*/
+					public void setXiaofeizheIdNumber(String xiaofeizheIdNumber) {
+						this.xiaofeizheIdNumber = xiaofeizheIdNumber;
+					}
+					/**
+					* 获取： 消费者头像
+					*/
+					public String getXiaofeizhePhoto() {
+						return xiaofeizhePhoto;
+					}
+					/**
+					* 设置： 消费者头像
+					*/
+					public void setXiaofeizhePhoto(String xiaofeizhePhoto) {
+						this.xiaofeizhePhoto = xiaofeizhePhoto;
+					}
+					/**
+					* 获取： 电子邮箱
+					*/
+					public String getXiaofeizheEmail() {
+						return xiaofeizheEmail;
+					}
+					/**
+					* 设置： 电子邮箱
+					*/
+					public void setXiaofeizheEmail(String xiaofeizheEmail) {
+						this.xiaofeizheEmail = xiaofeizheEmail;
+					}
 
 }
