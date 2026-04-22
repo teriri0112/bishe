@@ -45,6 +45,12 @@ public class GoodsShouyinModel implements Serializable {
 
 
     /**
+     * 消费者
+     */
+    private Integer xiaofeizheId;
+
+
+    /**
      * 实付金额
      */
     private Double goodsShouyinTruePrice;

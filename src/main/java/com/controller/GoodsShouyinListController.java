@@ -83,6 +83,8 @@ public class GoodsShouyinListController {
             return R.error(511,"权限为空");
         else if("员工".equals(role))
             params.put("yuangongId",request.getSession().getAttribute("userId"));
+        else if("消费者".equals(role))
+            params.put("xiaofeizheId",request.getSession().getAttribute("userId"));
         if(params.get("orderBy")==null || params.get("orderBy")==""){
             params.put("orderBy","id");
         }

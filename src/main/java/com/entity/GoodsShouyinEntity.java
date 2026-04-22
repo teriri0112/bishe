@@ -78,6 +78,14 @@ public class GoodsShouyinEntity<T> implements Serializable {
 
 
     /**
+     * 消费者
+     */
+    @TableField(value = "xiaofeizhe_id")
+
+    private Integer xiaofeizheId;
+
+
+    /**
      * 实付金额
      */
     @TableField(value = "goods_shouyin_true_price")
