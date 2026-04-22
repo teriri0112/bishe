@@ -29,6 +29,10 @@ import center from '@/views/center'
         import dictionaryGoodsShouyin from '@/views/modules/dictionaryGoodsShouyin/list'
         import dictionaryShangxia from '@/views/modules/dictionaryShangxia/list'
 
+        import xiaofeigouwu from '@/views/modules/xiaofeigouwu/list'
+        import xiaofeijilu from '@/views/modules/xiaofeijilu/list'
+        import xiaofeijiluDetail from '@/views/modules/xiaofeijilu/detail'
+
 
 
 
@@ -142,6 +146,21 @@ const routes = [{
         component: yuangong
       }
 
+    ,{
+        path: '/xiaofeigouwu',
+        name: '消费者购物',
+        component: xiaofeigouwu
+      }
+    ,{
+        path: '/xiaofeijilu',
+        name: '消费记录',
+        component: xiaofeijilu
+      }
+    ,{
+        path: '/xiaofeijiluDetail',
+        name: '消费明细',
+        component: xiaofeijiluDetail
+      }
 
     ]
   },
