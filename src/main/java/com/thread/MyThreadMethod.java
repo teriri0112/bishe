@@ -9,7 +9,7 @@ public class MyThreadMethod extends Thread  {
             try {
                 Thread.sleep(5000); //每隔2000ms执行一次
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                this.interrupt();
             }
 
 //			 ------------------ 开始执行 ---------------------------

@@ -26,28 +26,38 @@ public class DictionaryServletContextListener implements ServletContextListener 
     private MyThreadMethod myThreadMethod;
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        if (myThreadMethod != null && myThreadMethod.isAlive()) {
+            myThreadMethod.interrupt();
+            myThreadMethod = null;
+        }
         logger.info("----------服务器停止----------");
     }
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ApplicationContext appContext = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
-
-        logger.info("----------字典表初始化开始----------");
-        DictionaryService dictionaryService = (DictionaryService)appContext.getBean("dictionaryService");
-        List<DictionaryEntity> dictionaryEntities = dictionaryService.selectList(new EntityWrapper<DictionaryEntity>());
-        Map<String, Map<Integer,String>> map = new HashMap<>();
-        for(DictionaryEntity d :dictionaryEntities){
-            Map<Integer, String> m = map.get(d.getDicCode());
-            if(m ==null || m.isEmpty()){
-                m = new HashMap<>();
-            }
-            m.put(d.getCodeIndex(),d.getIndexName());
-            map.put(d.getDicCode(),m);
+        if (appContext == null) {
+            logger.warn("----------字典表初始化跳过：Spring上下文尚未就绪----------");
+            return;
         }
-        sce.getServletContext().setAttribute("dictionaryMap", map);
-        logger.info("----------字典表初始化完成----------");
-
+        try {
+            logger.info("----------字典表初始化开始----------");
+            DictionaryService dictionaryService = (DictionaryService) appContext.getBean("dictionaryService");
+            List<DictionaryEntity> dictionaryEntities = dictionaryService.selectList(new EntityWrapper<DictionaryEntity>());
+            Map<String, Map<Integer, String>> map = new HashMap<>();
+            for (DictionaryEntity d : dictionaryEntities) {
+                Map<Integer, String> m = map.get(d.getDicCode());
+                if (m == null || m.isEmpty()) {
+                    m = new HashMap<>();
+                }
+                m.put(d.getCodeIndex(), d.getIndexName());
+                map.put(d.getDicCode(), m);
+            }
+            sce.getServletContext().setAttribute("dictionaryMap", map);
+            logger.info("----------字典表初始化完成----------");
+        } catch (Exception e) {
+            logger.error("----------字典表初始化失败，已跳过启动时加载----------", e);
+        }
 
 
         logger.info("----------线程执行开始----------");
