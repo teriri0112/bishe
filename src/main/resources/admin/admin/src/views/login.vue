@@ -31,7 +31,14 @@
                     </el-form-item>
                     <el-button type="primary" @click="login()" class="loginInBt" style="padding:0;font-size:16px;border-radius:15px;height:44px;line-height:44px;width:100%;backgroundColor:rgba(149, 184, 226, 1); borderColor:rgba(149, 184, 226, 1); color:rgba(255, 255, 255, 1)">{{'2' == '1' ? '登录' : 'login'}}</el-button>
                     <el-form-item class="setting">
-            <!--<div style="color:rgba(149, 184, 226, 1)" class="register" @click="register('yuangong')">员工注册</div>-->
+                        <div
+                            v-for="item in menus"
+                            v-if="item.hasBackRegister=='是'"
+                            :key="item.tableName"
+                            style="color:rgba(149, 184, 226, 1)"
+                            class="register"
+                            @click="register(item.tableName)"
+                        >{{item.roleName}}注册</div>
                     </el-form-item>
                 </el-form>
             </div>
