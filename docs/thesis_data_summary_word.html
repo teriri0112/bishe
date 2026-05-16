@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>基于 Spring Boot 与 Vue 的便利店管理系统论文数据整理</title>
+  <style>
+    body { font-family: "SimSun", "宋体", serif; line-height: 1.6; margin: 2.5cm 2.8cm; color: #222; }
+    h1 { font-family: "SimHei", "黑体", sans-serif; text-align: center; font-size: 22pt; margin-bottom: 24px; }
+    h2 { font-family: "SimHei", "黑体", sans-serif; font-size: 16pt; margin-top: 22px; border-bottom: 1px solid #999; padding-bottom: 4px; }
+    p { text-indent: 2em; font-size: 12pt; margin: 8px 0; }
+    table { border-collapse: collapse; width: 100%; margin: 10px 0 18px; font-size: 10.5pt; }
+    th, td { border: 1px solid #555; padding: 6px 8px; vertical-align: top; }
+    th { background: #d9eaf7; text-align: left; font-weight: bold; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+<body>
+<h1>基于 Spring Boot 与 Vue 的便利店管理系统论文数据整理</h1>
+<p>本文档根据项目源码、数据库初始化脚本和前端菜单配置整理，可用于论文的系统概述、开发环境、需求分析、数据库设计、测试数据和实验数据章节。</p>
+<p>系统名称建议：基于 Spring Boot 与 Vue 的便利店管理系统设计与实现。</p>
+<p>系统定位：本项目是面向便利店日常经营的管理系统，覆盖商品、供应商、采购、收银、员工、消费者和基础字典等业务。</p>
+<h2>一、开发环境与技术栈</h2>
+<table>
+<tr><th>类别</th><th>技术/版本</th><th>论文表述建议</th></tr>
+<tr><td>后端框架</td><td>Spring Boot 2.2.2.RELEASE</td><td>采用 Spring Boot 快速搭建后端服务。</td></tr>
+<tr><td>JDK</td><td>Java 1.8</td><td>系统运行环境为 JDK 1.8。</td></tr>
+<tr><td>持久层</td><td>MyBatis + MyBatis-Plus</td><td>用于数据访问层开发和通用 CRUD。</td></tr>
+<tr><td>数据库</td><td>MySQL 5.7 / bianlidian</td><td>使用 MySQL 存储系统业务数据。</td></tr>
+<tr><td>权限认证</td><td>Apache Shiro 1.3.2</td><td>用于登录认证、角色权限控制。</td></tr>
+<tr><td>前端框架</td><td>Vue 2.6.10</td><td>前端采用 Vue 构建后台单页管理界面。</td></tr>
+<tr><td>UI 框架</td><td>Element UI 2.13.0</td><td>使用 Element UI 完成后台页面组件化设计。</td></tr>
+<tr><td>图表工具</td><td>ECharts 4.6.0</td><td>用于收银报表和统计图表展示。</td></tr>
+</table>
+<h2>二、系统运行配置</h2>
+<table>
+<tr><th>配置项</th><th>值</th><th>说明</th></tr>
+<tr><td>后端端口</td><td>8080</td><td>Spring Boot 服务端口。</td></tr>
+<tr><td>项目访问路径</td><td>/bianlidian</td><td>系统上下文路径。</td></tr>
+<tr><td>数据库地址</td><td>127.0.0.1:3306/bianlidian</td><td>连接本地 MySQL 数据库。</td></tr>
+<tr><td>数据库账号</td><td>root / 123456</td><td>本地数据库连接账号和密码。</td></tr>
+<tr><td>Mapper 位置</td><td>classpath*:mapper/*.xml</td><td>MyBatis XML 映射文件位置。</td></tr>
+<tr><td>逻辑删除配置</td><td>删除值 -1，未删除值 0</td><td>MyBatis-Plus 逻辑删除配置。</td></tr>
+</table>
+<h2>三、系统角色与功能模块</h2>
+<table>
+<tr><th>角色</th><th>功能模块</th><th>主要操作</th></tr>
+<tr><td>管理员</td><td>基础数据管理</td><td>查看、新增、修改、删除商品类型、供应商类型、地区类型、信用等级等字典数据。</td></tr>
+<tr><td>管理员</td><td>供应商信息管理</td><td>查看、新增、修改、删除供应商基础资料。</td></tr>
+<tr><td>管理员</td><td>商品管理</td><td>查看、新增、修改、删除商品，维护库存、进价、售价和上下架状态。</td></tr>
+<tr><td>管理员</td><td>采购管理</td><td>查看、新增、删除采购单及采购明细。</td></tr>
+<tr><td>管理员</td><td>收银管理</td><td>查看、新增、删除收银订单，查看收银明细并生成报表。</td></tr>
+<tr><td>管理员</td><td>员工管理</td><td>查看、新增、修改、删除员工账号资料。</td></tr>
+<tr><td>管理员</td><td>消费者管理</td><td>查看、新增、修改、删除消费者账号资料。</td></tr>
+<tr><td>员工</td><td>供应商/商品查看</td><td>查看供应商信息和商品信息。</td></tr>
+<tr><td>员工</td><td>收银管理</td><td>新增收银订单，查看和删除收银记录。</td></tr>
+<tr><td>消费者</td><td>商品浏览购买</td><td>查看商品、购买商品、支付订单。</td></tr>
+<tr><td>消费者</td><td>消费记录查询</td><td>查看历史消费记录。</td></tr>
+</table>
+<h2>四、数据库表总体设计</h2>
+<p>系统数据库主要包含配置、字典、供应商、商品、采购、采购详情、收银、收银详情、token、员工、消费者、管理员等表。</p>
+<table>
+<tr><th>表名</th><th>中文含义</th><th>主要用途</th><th>初始化数据量</th></tr>
+<tr><td>config</td><td>配置文件</td><td>存储系统配置参数。</td><td>0</td></tr>
+<tr><td>dictionary</td><td>字典</td><td>存储商品类型、供应商类型、性别、收银类型等枚举数据。</td><td>20</td></tr>
+<tr><td>gongyingshang</td><td>供应商信息</td><td>存储供应商资料。</td><td>3</td></tr>
+<tr><td>goods</td><td>商品</td><td>存储商品资料、库存、进价、售价、上下架状态。</td><td>3</td></tr>
+<tr><td>goods_churu_inout</td><td>采购</td><td>存储采购单主表数据。</td><td>0</td></tr>
+<tr><td>goods_churu_inout_list</td><td>采购详情</td><td>存储采购商品明细。</td><td>5</td></tr>
+<tr><td>goods_shouyin</td><td>收银</td><td>存储收银订单主表。</td><td>15</td></tr>
+<tr><td>goods_shouyin_list</td><td>收银详情</td><td>存储订单商品明细。</td><td>24</td></tr>
+<tr><td>token</td><td>token 表</td><td>存储用户登录 token。</td><td>0</td></tr>
+<tr><td>yuangong</td><td>员工</td><td>存储员工账号资料。</td><td>3</td></tr>
+<tr><td>xiaofeizhe</td><td>消费者</td><td>存储消费者账号资料。</td><td>3</td></tr>
+<tr><td>users</td><td>管理员表</td><td>存储管理员账号。</td><td>1</td></tr>
+</table>
+<h2>五、核心数据表说明</h2>
+<table>
+<tr><th>数据表</th><th>核心字段</th><th>说明</th></tr>
+<tr><td>goods</td><td>商品编号、商品名称、商品照片、商品类型、库存、进价、售价、上下架状态、逻辑删除、商品简介</td><td>用于管理便利店商品基础资料和库存价格信息。</td></tr>
+<tr><td>gongyingshang</td><td>供应商名称、联系人、手机号、供应商类型、所在地区、信用等级、供应商详情</td><td>用于管理供应商档案。</td></tr>
+<tr><td>goods_shouyin</td><td>收银流水号、员工、实付金额、收银类型、备注、购买时间</td><td>用于记录收银订单主表信息。</td></tr>
+<tr><td>goods_shouyin_list</td><td>收银订单 ID、商品 ID、购买数量、购买时间</td><td>用于记录每笔订单包含的商品明细。</td></tr>
+<tr><td>xiaofeizhe</td><td>账号、密码、姓名、手机号、身份证号、头像、性别、邮箱</td><td>用于管理消费者账号资料，并对用户名、手机号、身份证号设置唯一约束。</td></tr>
+<tr><td>yuangong</td><td>账号、密码、姓名、手机号、身份证号、头像、性别、邮箱</td><td>用于管理员工账号资料。</td></tr>
+<tr><td>users</td><td>用户名、密码、角色、新增时间</td><td>用于保存后台管理员账号。</td></tr>
+</table>
+<h2>六、初始化样本数据统计</h2>
+<table>
+<tr><th>统计项目</th><th>统计结果</th></tr>
+<tr><td>商品种类数</td><td>3 种</td></tr>
+<tr><td>商品库存总量</td><td>965 件</td></tr>
+<tr><td>商品平均售价</td><td>148.33 元</td></tr>
+<tr><td>库存按进价估算总成本</td><td>154,725.00 元</td></tr>
+<tr><td>库存按售价估算总价值</td><td>209,105.00 元</td></tr>
+<tr><td>上架商品数</td><td>2 个</td></tr>
+<tr><td>下架商品数</td><td>1 个</td></tr>
+<tr><td>收银订单数</td><td>15 单</td></tr>
+<tr><td>销售总金额</td><td>4,620.00 元</td></tr>
+<tr><td>线下支付订单数</td><td>6 单</td></tr>
+<tr><td>线上支付订单数</td><td>9 单</td></tr>
+<tr><td>收银明细数量</td><td>24 条</td></tr>
+<tr><td>销售商品总数量</td><td>73 件</td></tr>
+<tr><td>采购明细数量</td><td>5 条</td></tr>
+<tr><td>采购商品总数量</td><td>15 件</td></tr>
+</table>
+<h2>七、按月份销售统计</h2>
+<table>
+<tr><th>月份</th><th>订单数</th><th>销售额</th></tr>
+<tr><td>2021-11</td><td>5</td><td>615.00 元</td></tr>
+<tr><td>2021-12</td><td>10</td><td>4,005.00 元</td></tr>
+<tr><td>合计</td><td>15</td><td>4,620.00 元</td></tr>
+</table>
+<h2>八、商品销售数量统计</h2>
+<table>
+<tr><th>商品 ID</th><th>销售数量</th></tr>
+<tr><td>1</td><td>41</td></tr>
+<tr><td>2</td><td>24</td></tr>
+<tr><td>3</td><td>8</td></tr>
+<tr><td>合计</td><td>73</td></tr>
+</table>
+<h2>九、采购数量统计</h2>
+<table>
+<tr><th>商品 ID</th><th>采购数量</th></tr>
+<tr><td>1</td><td>6</td></tr>
+<tr><td>2</td><td>4</td></tr>
+<tr><td>3</td><td>5</td></tr>
+<tr><td>合计</td><td>15</td></tr>
+</table>
+<h2>十、测试用例数据</h2>
+<table>
+<tr><th>测试类别</th><th>测试数据</th><th>预期结果</th></tr>
+<tr><td>管理员登录</td><td>用户名：admin，密码：admin</td><td>登录成功，进入管理员后台。</td></tr>
+<tr><td>员工登录</td><td>用户名：a1，密码：123456</td><td>登录成功，进入员工后台。</td></tr>
+<tr><td>消费者登录</td><td>用户名：x1，密码：123456</td><td>登录成功，进入消费者后台。</td></tr>
+<tr><td>商品列表查询</td><td>查询全部商品</td><td>返回 3 条商品记录。</td></tr>
+<tr><td>商品库存查看</td><td>查看商品 ID=1</td><td>库存为 279。</td></tr>
+<tr><td>商品上下架状态</td><td>查看商品 ID=2</td><td>状态为下架。</td></tr>
+<tr><td>商品售价查看</td><td>查看商品 ID=3</td><td>售价为 400.00 元。</td></tr>
+<tr><td>收银订单统计</td><td>统计全部订单</td><td>订单总数 15 单，销售总额 4,620.00 元。</td></tr>
+<tr><td>月度销售统计</td><td>按月份统计销售额</td><td>2021-11 销售额 615.00 元，2021-12 销售额 4,005.00 元。</td></tr>
+</table>
+<h2>十一、可直接写入论文的数据规模描述</h2>
+<p>本系统以便利店日常经营业务为研究对象，数据库初始化样本包含 3 条商品数据、3 条供应商数据、3 条员工数据、3 条消费者数据、1 条管理员数据、20 条字典数据、15 条收银订单数据、24 条收银明细数据以及 5 条采购明细数据。商品初始化库存总量为 965 件，库存按进价估算总成本为 154725.00 元，按售价估算总价值为 209105.00 元。收银模块初始化订单总数为 15 单，销售总额为 4620.00 元，其中线上支付 9 单、线下支付 6 单。系统数据能够覆盖商品维护、供应商管理、采购入库、收银结算、消费记录查询等核心业务场景。</p>
+<h2>十二、写作注意事项</h2>
+<p>数据库初始化脚本中存在部分结构异常，例如 goods_shouyin 表和 yuangong 表出现重复或不完整定义。论文正文建议展示整理后的逻辑表结构，不建议直接粘贴原始 SQL 全文。</p>
+<p>若需要将 SQL 放入附录，建议先修正初始化脚本后再作为附录材料。</p>
+</body>
+</html>
