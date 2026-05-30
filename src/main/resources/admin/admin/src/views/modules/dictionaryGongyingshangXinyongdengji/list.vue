@@ -336,7 +336,7 @@
                     sort: 'id',
                 }
                 if(this.searchForm.indexNameSearch!='' && this.searchForm.indexNameSearch!=undefined){
-                    params['indexNameSearch'] = '%' + this.searchForm.indexNameSearch + '%'
+                    params['indexName'] = '%' + this.searchForm.indexNameSearch + '%'
                 }
                 //本表的
                 params['dicCode'] = "gongyingshang_xinyongdengji_types"//编码名字

@@ -34,17 +34,6 @@
                         </el-select>
                     </el-form-item>
                      
-                    <el-form-item :label="contents.inputTitle == 1 ? '开始商品库存' : ''">
-                      <el-input v-model="searchForm.goodsKucunNumberStartSearch"
-                                placeholder="请输入开始商品库存" clearable></el-input>
-                    </el-form-item>
-                    <el-form-item :label="contents.inputTitle == 1 ? '' : ''">
-                      =》
-                    </el-form-item>
-                    <el-form-item :label="contents.inputTitle == 1 ? '结束商品库存' : ''">
-                        <el-input v-model="searchForm.goodsKucunNumberEndSearch"
-                                  placeholder="请输入结束商品库存" clearable></el-input>
-                    </el-form-item>
                                                                                                                                                                  
                     <el-form-item :label="contents.inputTitle == 1 ? '收银流水号' : ''">
                         <el-input prefix-icon="el-icon-search" v-model="searchForm.goodsShouyinUuidNumber" placeholder="收银流水号" clearable></el-input>

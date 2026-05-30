@@ -76,6 +76,14 @@ public class DictionaryController {
         if(params.get("orderBy")==null || params.get("orderBy")==""){
             params.put("orderBy","id");
         }
+        Object indexName = params.get("indexName");
+        Object indexNameSearch = params.get("indexNameSearch");
+        if((indexName == null || StringUtil.isEmpty(String.valueOf(indexName)) || "null".equals(String.valueOf(indexName)))
+                && indexNameSearch != null
+                && StringUtil.isNotEmpty(String.valueOf(indexNameSearch))
+                && !"null".equals(String.valueOf(indexNameSearch))){
+            params.put("indexName", indexNameSearch);
+        }
         PageUtils page = dictionaryService.queryPage(params);
 
         //字典表数据转换
